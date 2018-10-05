@@ -1,0 +1,27 @@
+header {
+    width: 960px;
+    background-color: black;
+    margin: auto;
+    padding: 50px;
+}
+
+h1 {
+    color: white;
+}
+
+.container {
+    width: 960px;
+}
+
+h2{
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+form {
+    padding: 0 20px 20px 20px;
+}
+
+table {
+    padding: 50px
+}

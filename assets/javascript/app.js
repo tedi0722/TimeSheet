@@ -1,9 +1,8 @@
+$(document).ready(function() {
 
-/*
-
-<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-<script>
-  // Initialize Firebase
+  
+  
+  // Initialize Firebase ////
   var config = {
     apiKey: "AIzaSyA5CtZbvwtjOKdr_xsKFfy9jlqEsJByt-U",
     authDomain: "timesheet-2eb89.firebaseapp.com",
@@ -13,9 +12,45 @@
     messagingSenderId: "382292366510"
   };
   firebase.initializeApp(config);
-</script>
 
-*/
+  // Variables to reference to the database ////
+  var employeeName = "";
+  var role = "";
+  var startDate = "";
+  var monthlyRate = 0;
+
+  var database = firebase.database();
+
+  // Capture Button Click
+  $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+      employeeName = $("#employee-name").val().trim();
+      role = $("#role-display").val().trim();
+      startDate = $("#start-date").val().trim();
+      monthlyRate = $("#monthly-rate").val().trim();
+
+      console.log("employeeName: " + employeeName);
+      console.log("role: " + role);
+      console.log("startDate: " + startDate);
+      console.log("monthlyRate: " + monthlyRate);
+
+      // Push new values to the database.
+      database.ref().push({
+          employeeName: employeeName,
+          role: role,
+          startDate: startDate,
+          monthlyRate: monthlyRate
+      });
+  });
+
+  // Firebase watcher + initial loader (child_added)
+  database.ref().on("child_added", function(snapshot) {
+      console.log(snapshot.val());
+
+      //Display IDs should go here.
+  })
+
 
 // psuedo-code for displaying data to the current employees table.
 
@@ -41,3 +76,8 @@
 
 // To get the "Total Billed ($)" value, we need to do the following calc:
     // (months worked) * (monthly rate) = (totaled billed)
+
+
+
+
+}); ///$(document).ready(function() {});
